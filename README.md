@@ -2,17 +2,24 @@
 
 > A Vue.js project
 
-## Build Setup
+## Install
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+``` shell
+npm install npm-donews-test -S
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Quick Start
+``` javascript
+import Vue from 'vue'
+import NpmDonewsTest from 'npm-donews-test'
+
+Vue.use(NpmDonewsTest)
+
+// or
+import {
+  Banner
+  // ...
+} from 'npm-donews-test'
+
+Vue.component(Banner.name, Banner)
+```
