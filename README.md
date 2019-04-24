@@ -1,4 +1,5 @@
 # npm-donews-test
+<<<<<<< HEAD
 
 > A Vue.js project
 
@@ -16,3 +17,6 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+vue component test
+>>>>>>> 0d8158c9c500a8c2a1f24d0f58bf3f10f2dd5a28
