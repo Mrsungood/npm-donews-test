@@ -23,3 +23,7 @@ import {
 
 Vue.component(Banner.name, Banner)
 ```
+
+## Development Doc Links
+
+- [Banner](https://github.com/Mrsungood/npm-donews-test/blob/master/examples/banner/index.vue)

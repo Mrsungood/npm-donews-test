@@ -1,7 +1,7 @@
 {
   "name": "npm-donews-test",
   "description": "donews-ui component for Vue.js",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": "sunshiyong <sunshiyong@donews.com>",
   "main": "dist/build.js",
   "license": "MIT",
