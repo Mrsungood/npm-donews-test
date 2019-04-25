@@ -1,13 +1,13 @@
 <template>
-  <div class="banner">
-    <div class="container swiper-container-banner">
+  <div class="dn-banner">
+    <div class="container dn-banner-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in data" :key="index">
-          <div class="swiper-content is-img" :class="'is-img-' + bIndex" v-for="(bItem, bIndex) in data[index]" :key="bIndex">
-            <a class="link" :href="bItem.url" target="_blank">
-              <div class="scale">
-                <img :src="bItem.pic" class="image"/>
-                <p class="title mode-color">
+          <div class="swiper-content dn-banner-img" :class="'dn-banner-img-' + bIndex" v-for="(bItem, bIndex) in data[index]" :key="bIndex">
+            <a class="dn-banner-link" :href="(bItem.locationlink==null ? bItem.url : bItem.locationlink) | linkURL(bItem)" target="_blank">
+              <div class="dn-banner-scale">
+                <img :src="bItem.pic | imgURL('720_414')"/>
+                <p class="dn-banner-title">
                   <span>{{bItem.title}}</span>
                 </p>
               </div>
@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div @click="selectPage($event)" class="swiper-pagination home-banner__swiper-pagination"></div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </template>
@@ -37,18 +37,11 @@ export default {
     }
   },
   mounted () {
-    let currentPage = `<span index class="swiper-bullet swiper-bullet-active"></span>`
-    let normalPage = `<span index class="swiper-bullet"></span>`
     /* eslint-disable no-new */
-    this.swiper = new Swiper('.swiper-container-banner', {
+    this.swiper = new Swiper('.dn-banner-container', {
       pagination: {
-        el: '.home-banner__swiper-pagination',
-        type: 'custom',
-        renderCustom: function (swiper, current, total) {
-          let pages = [normalPage.replace('index', 'index=0'), normalPage.replace('index', 'index=1'), normalPage.replace('index', 'index=2')]
-          pages.splice(current - 1, 1, currentPage.replace('index', 'index=' + (current - 1)))
-          return pages.join('')
-        }
+        el: '.swiper-pagination',
+        clickable: true
       },
       autoplay: {
         disableOnInteraction: false,
@@ -57,27 +50,17 @@ export default {
       }
     })
     /* eslint-enable no-new */
-  },
-  methods: {
-    selectPage ($event, index) {
-      let target = $event.target || $event.srcElement
-      let pageIndex = target.getAttribute('index')
-      if (!pageIndex) {
-        return
-      }
-      this.swiper.slideTo(pageIndex)
-    }
   }
 }
 </script>
 <style lang="less" scoped>
-.banner{
+.dn-banner{
   position: relative;
   width: 100%;
   padding: 40px 32px 40px 32px;
   background: #242833;
   margin: 0 auto;
-  .container{
+  .dn-banner-container{
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -90,7 +73,7 @@ export default {
     display: block;
     overflow: hidden;
     position: relative;
-    &.is-img{
+    &.dn-banner-img{
       display: inline-block;
       position: relative;
       &:after {
@@ -99,7 +82,7 @@ export default {
         display: block;
       }
     }
-    &.is-img-0{
+    &.dn-banner-img-0{
       width: 20%;
       a {
         padding-top: 8px;
@@ -114,7 +97,7 @@ export default {
         }
       }
     }
-    &.is-img-1{
+    &.dn-banner-img-1{
       width: 20%;
       position: absolute;
       left: 0px;
@@ -131,7 +114,7 @@ export default {
         }
       }
     }
-    &.is-img-2{
+    &.dn-banner-img-2{
       width: 40%;
       a{
         width: 100%;
@@ -148,7 +131,7 @@ export default {
         }
       }
     }
-    &.is-img-3{
+    &.dn-banner-img-3{
       width: 40%;
       a{
         width: 100%;
@@ -166,7 +149,7 @@ export default {
       }
     }
   }
-  .link {
+  .dn-banner-link {
     position: absolute;
     top: 0;
     display: block;
@@ -186,13 +169,24 @@ export default {
       }
     }
   }
-  .image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover
+  .dn-banner-scale{
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      transition: all .7s ease 0s;
+      transform-origin: center;
+    }
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
-  .title{
-    background: rgba(0,0,0,.3);
+  .dn-banner-title{
+    background: rgba(0,14,52,.6);
     position: absolute;
     bottom: 0;
     left: 0px;
@@ -237,22 +231,6 @@ export default {
     z-index: 50;
     width: 128px;
     background: #323848;
-  }
-  .mode-color {
-    background: rgba(0,14,52,.6)!important;
-  }
-  .scale{
-    overflow: hidden;
-    img{
-      transform: scale(1);
-      transition: all .7s ease 0s;
-      transform-origin: center;
-    }
-    &:hover {
-      img {
-        transform: scale(1.1);
-      }
-    }
   }
 }
 </style>
