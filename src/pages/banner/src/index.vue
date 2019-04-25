@@ -4,9 +4,9 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in data" :key="index">
           <div class="swiper-content dn-banner-img" :class="'dn-banner-img-' + bIndex" v-for="(bItem, bIndex) in data[index]" :key="bIndex">
-            <a class="dn-banner-link" :href="(bItem.locationlink==null ? bItem.url : bItem.locationlink) | linkURL(bItem)" target="_blank">
+            <a class="dn-banner-link" :href="bItem.url" target="_blank">
               <div class="dn-banner-scale">
-                <img :src="bItem.pic | imgURL('720_414')"/>
+                <img :src="bItem.pic"/>
                 <p class="dn-banner-title">
                   <span>{{bItem.title}}</span>
                 </p>
@@ -27,27 +27,43 @@ export default {
   props: {
     data: {
       type: Object,
-      default: [],
+      default: () => {
+        return {}
+      },
       required: true
+    },
+    pagination: {
+      type: Object,
+      default: () => {
+        return {
+          el: '.swiper-pagination',
+          clickable: true
+        }
+      },
+      required: false
+    },
+    autoplay: {
+      type: Object,
+      default: () => {
+        return {
+          disableOnInteraction: false,
+          autoplay: true,
+          delay: 5000
+        }
+      },
+      required: false
     }
   },
   data () {
     return {
-      swiper: {},
+      swiper: {}
     }
   },
   mounted () {
     /* eslint-disable no-new */
     this.swiper = new Swiper('.dn-banner-container', {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      autoplay: {
-        disableOnInteraction: false,
-        autoplay: true,
-        delay: 5000
-      }
+      pagination: this.pagination,
+      autoplay: this.autoplay
     })
     /* eslint-enable no-new */
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dn-banner :data="data"></dn-banner>
+    <dn-banner :data="data" :pagination="pagination" :autoplay="autoplay"></dn-banner>
   </div>
 </template>
 
@@ -45,25 +45,16 @@ export default {
             title: '《新樱花大战》首波游戏资讯 灵子战斗机介绍',
             url: 'https://www.tgbus.com/news/40966'
           }
-        ],
-        2: [
-          { pic: 'https://img2.tgbus.com/i/720_414/cms3.0/2019/0419/20190419011638-5684-63866.jpg',
-            title: 'PS5首席架构师：次世代主机定价会很有吸引力',
-            url: 'https://www.tgbus.com/news/40936'
-          },
-          { pic: 'https://img2.tgbus.com/i/720_414/cms3.0/2019/0419/20190419142811-4366-15749.png',
-            title: '腾讯代理Switch？任天堂国行蓝海市场即将破冰',
-            url: 'https://www.tgbus.com/news/40928'
-          },
-          { pic: 'https://img2.tgbus.com/i/720_414/cms3.0/2019/0418/20190418174823-8632-30945.jpg',
-            title: '令人抓狂的《火车峡谷2》又来了，而且难度超乎想象',
-            url: 'https://www.tgbus.com/news/40907'
-          },
-          { pic: 'https://img2.tgbus.com/i/720_414/cms3.0/2019/0418/20190418171728-3110-21024.jpg',
-            title: '腾讯将代理国行NS主机 和《超级马力欧兄弟U》',
-            url: 'https://www.tgbus.com/news/40904'
-          }
         ]
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      autoplay: {
+        disableOnInteraction: false,
+        autoplay: true,
+        delay: 5000
       }
     }
   }
