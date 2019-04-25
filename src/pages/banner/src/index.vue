@@ -250,17 +250,3 @@ export default {
   }
 }
 </style>
-<style lang="less">
-.swiper-bullet{
-  width: 40px;
-  height: 5px;
-  display: inline-block;
-  margin-right: 4px;
-  border-radius: 2px;
-  cursor: pointer;
-  background-color: #323847;
-}
-.swiper-bullet-active{
-  background-color: #4985F2;
-}
-</style>
